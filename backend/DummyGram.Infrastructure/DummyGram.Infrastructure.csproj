@@ -20,4 +20,8 @@
       <Folder Include="EFCore\Migrations" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DummyGram.Domain\DummyGram.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
