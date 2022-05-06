@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyGram.API", "DummyGram.API\DummyGram.API.csproj", "{D263BFE9-0998-4B04-A62B-8438E18CF176}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyGram.Infrastructure", "DummyGram.Infrastructure\DummyGram.Infrastructure.csproj", "{D399D525-29DD-409D-9C3B-328C18401DC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{D263BFE9-0998-4B04-A62B-8438E18CF176}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D263BFE9-0998-4B04-A62B-8438E18CF176}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D263BFE9-0998-4B04-A62B-8438E18CF176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D399D525-29DD-409D-9C3B-328C18401DC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D399D525-29DD-409D-9C3B-328C18401DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D399D525-29DD-409D-9C3B-328C18401DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D399D525-29DD-409D-9C3B-328C18401DC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
