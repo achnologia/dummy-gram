@@ -1,4 +1,5 @@
 ﻿using DummyGram.Domain.Post;
+using DummyGram.Domain.Story;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,4 +12,6 @@ public class ApplicationDbContext : IdentityDbContext
     { }
     
     public DbSet<Post> Posts => Set<Post>();
+
+    public DbSet<Story> Stories => Set<Story>();
 }
