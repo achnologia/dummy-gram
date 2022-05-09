@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using DummyGram.Application.Identity;
 using DummyGram.Application.Identity.Services;
-using DummyGram.Application.Post.Repository;
+using DummyGram.Application.Post.Repositories;
 using DummyGram.Application.Post.Services;
-using DummyGram.Application.Story.Repository;
+using DummyGram.Application.Story.Repositories;
 using DummyGram.Application.Story.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;

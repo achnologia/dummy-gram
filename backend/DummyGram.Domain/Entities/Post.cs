@@ -1,15 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DummyGram.Domain.Entities;
 
-public class Post
+public class Post : Entity
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int Id { get; set; }
-
     public string IdUser { get; set; }
     
     public string ImageUrl { get; set; }
@@ -30,5 +26,11 @@ public class Post
         Description = description;
         
         DatePosted = DateTime.UtcNow;
+    }
+
+    public void Update(string imageUrl, string description)
+    {
+        ImageUrl = imageUrl;
+        Description = description;
     }
 }

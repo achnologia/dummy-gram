@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DummyGram.Domain\DummyGram.Domain.csproj" />
       <ProjectReference Include="..\DummyGram.Infrastructure\DummyGram.Infrastructure.csproj" />
     </ItemGroup>
 
