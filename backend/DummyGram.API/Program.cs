@@ -1,3 +1,4 @@
+using DummyGram.Application;
 using DummyGram.Domain;
 using DummyGram.Infrastructure;
 
@@ -11,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddDomain();
+builder.Services.AddApplication(builder.Configuration);
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using DummyGram.Infrastructure.EFCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,9 @@ public static class DependencyInjection
             options.UseSqlServer(configuration.GetConnectionString("Default"),
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
         });
+
+        services.AddIdentityCore<IdentityUser>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
         
         return services;
     }

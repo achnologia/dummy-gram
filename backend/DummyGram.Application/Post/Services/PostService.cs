@@ -1,4 +1,4 @@
-﻿namespace DummyGram.Domain.Post.Service;
+﻿namespace DummyGram.Application.Post.Services;
 
 public class PostService : IPostService
 {

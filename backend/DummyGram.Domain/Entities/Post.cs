@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
-namespace DummyGram.Domain.Post;
+namespace DummyGram.Domain.Entities;
 
 public class Post
 {

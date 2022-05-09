@@ -1,4 +1,4 @@
-﻿namespace DummyGram.Domain.Story.Repository;
+﻿namespace DummyGram.Application.Story.Repository;
 
 public class StoryRepository : IStoryRepository
 {

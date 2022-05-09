@@ -1,5 +1,4 @@
-﻿using DummyGram.Domain.Post;
-using DummyGram.Domain.Story;
+﻿using DummyGram.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,4 +13,6 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Post> Posts => Set<Post>();
 
     public DbSet<Story> Stories => Set<Story>();
+    
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 }
