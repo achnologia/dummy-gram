@@ -15,7 +15,9 @@ public class AppUserRepository : IAppUserRepository
 
     public async Task<AppUser> GetByIdAsync(string id)
     {
-        var appUser = await _context.AppUsers.SingleOrDefaultAsync(x => x.Id == id);
+        var appUser = await _context.AppUsers.Include(x => x.Subscribers)
+            .Include(x => x.Subscriptions)
+            .SingleOrDefaultAsync(x => x.Id == id);
 
         return appUser;
     }

@@ -17,4 +17,17 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<AppUser> AppUsers => Set<AppUser>();
     
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<AppUser>()
+            .HasMany(c => c.Subscriptions)
+            .WithMany(s => s.Subscribers)
+            .UsingEntity(j =>
+            {
+                j.ToTable("Subscriptions");
+            });
+        
+        base.OnModelCreating(modelBuilder);
+    }
 }

@@ -7,6 +7,10 @@ namespace DummyGram.Domain.Entities;
 public class AppUser : IdentityUser
 {
     public string DisplayName { get; set; }
+
+    public List<AppUser> Subscriptions { get; set; } = new List<AppUser>();
+    
+    public List<AppUser> Subscribers { get; set; } = new List<AppUser>();
     
     public AppUser() { }
 
@@ -20,5 +24,20 @@ public class AppUser : IdentityUser
     public void Update(string displayName)
     {
         DisplayName = displayName;
+    }
+
+    public void Subscribe(AppUser newSubscriber)
+    {
+        Subscribers.Add(newSubscriber);
+    }
+
+    public void Unsubscribe(AppUser newSubscriber)
+    {
+        Subscribers.Remove(newSubscriber);
+    }
+    
+    public bool HasSubscriber(AppUser subscriber)
+    {
+        return Subscribers.Contains(subscriber);
     }
 }
