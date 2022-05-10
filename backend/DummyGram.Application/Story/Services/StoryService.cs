@@ -1,19 +1,40 @@
-﻿namespace DummyGram.Application.Story.Services;
+﻿using DummyGram.Application.Story.Repositories;
+
+namespace DummyGram.Application.Story.Services;
 
 public class StoryService : IStoryService
 {
-    public Task<int> Create()
+    private readonly IStoryRepository _repository;
+
+    public StoryService(IStoryRepository repository)
     {
-        throw new NotImplementedException();
+        _repository = repository;
     }
 
-    public Task Update()
+    public async Task<int> CreateAsync(string idUser, string imageUrl)
     {
-        throw new NotImplementedException();
+        var newStory = new Domain.Entities.Story(idUser, imageUrl);
+        
+        await _repository.AddAsync(newStory);
+
+        return newStory.Id;
     }
 
-    public Task Delete()
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _repository.DeleteAsync(id);
+    }
+    
+    public async Task<bool> IsUserStoryAuthor(int id, string idUser)
+    {
+        var story = await _repository.GetByIdNoTrackingAsync(id);
+
+        if (story is null)
+            return false;
+
+        if (story.IdUser != idUser)
+            return false;
+
+        return true;
     }
 }

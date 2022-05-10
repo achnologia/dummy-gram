@@ -1,6 +1,8 @@
-﻿namespace DummyGram.Application.Story.Repositories;
+﻿using DummyGram.Application.Common;
 
-public interface IStoryRepository
+namespace DummyGram.Application.Story.Repositories;
+
+public interface IStoryRepository : IRepository<Domain.Entities.Story>
 {
     
 }
