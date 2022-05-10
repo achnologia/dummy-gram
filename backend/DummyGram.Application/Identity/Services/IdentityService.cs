@@ -11,12 +11,12 @@ namespace DummyGram.Application.Identity.Services;
 
 public class IdentityService : IIdentityService
 {
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly UserManager<AppUser> _userManager;
     private readonly ITokenService _tokenService;
     private readonly TokenValidationParameters _tokenValidationParameters;
     private readonly ApplicationDbContext _context;
 
-    public IdentityService(UserManager<IdentityUser> userManager, ITokenService tokenService, TokenValidationParameters tokenValidationParameters, ApplicationDbContext context)
+    public IdentityService(UserManager<AppUser> userManager, ITokenService tokenService, TokenValidationParameters tokenValidationParameters, ApplicationDbContext context)
     {
         _userManager = userManager;
         _tokenService = tokenService;
@@ -36,11 +36,7 @@ public class IdentityService : IIdentityService
             };
         }
 
-        var newUser = new IdentityUser
-        {
-            Email = email,
-            UserName = email
-        };
+        var newUser = new AppUser(email);
 
         var createdUser = await _userManager.CreateAsync(newUser, password);
 
