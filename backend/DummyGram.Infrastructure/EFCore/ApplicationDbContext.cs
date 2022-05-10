@@ -13,6 +13,8 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Post> Posts => Set<Post>();
 
     public DbSet<Story> Stories => Set<Story>();
+
+    public DbSet<AppUser> AppUsers => Set<AppUser>();
     
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 }
