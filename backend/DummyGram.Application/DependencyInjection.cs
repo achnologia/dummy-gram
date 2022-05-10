@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using DummyGram.Application.AppUsers.Repositories;
+using DummyGram.Application.AppUsers.Services;
 using DummyGram.Application.Identity;
 using DummyGram.Application.Identity.Services;
 using DummyGram.Application.Posts.Repositories;
@@ -29,6 +31,9 @@ public static class DependencyInjection
         
         services.AddScoped<IStoryRepository, StoryRepository>();
         services.AddScoped<IStoryService, StoryService>();
+        
+        services.AddScoped<IAppUserRepository, AppUserRepository>();
+        services.AddScoped<IAppUserService, AppUserService>();
         
         var tokenValidationParameters = new TokenValidationParameters
         {

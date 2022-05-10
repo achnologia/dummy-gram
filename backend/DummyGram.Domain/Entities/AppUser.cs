@@ -16,4 +16,9 @@ public class AppUser : IdentityUser
         UserName = email;
         DisplayName = email;
     }
+
+    public void Update(string displayName)
+    {
+        DisplayName = displayName;
+    }
 }
