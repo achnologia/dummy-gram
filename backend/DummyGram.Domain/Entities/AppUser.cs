@@ -12,6 +12,8 @@ public class AppUser : IdentityUser
     
     public List<AppUser> Subscribers { get; set; } = new List<AppUser>();
     
+    public List<Post> SavedPosts { get; set; } = new List<Post>();
+    
     public AppUser() { }
 
     public AppUser(string email)
@@ -39,5 +41,15 @@ public class AppUser : IdentityUser
     public bool HasSubscriber(AppUser subscriber)
     {
         return Subscribers.Contains(subscriber);
+    }
+
+    public void SavePost(Post post)
+    {
+        SavedPosts.Add(post);
+    }
+    
+    public void RemoveSavedPost(Post post)
+    {
+        SavedPosts.Remove(post);
     }
 }

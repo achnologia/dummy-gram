@@ -34,7 +34,7 @@ public class PostsController : ControllerBase
     [HttpPatch("{id}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdatePostRequest request)
     {
-        var isAuthor = await _postService.IsUserPostAuthor(id, HttpContext.GetIdUser());
+        var isAuthor = await _postService.IsUserPostAuthorAsync(id, HttpContext.GetIdUser());
 
         if (!isAuthor)
         {
@@ -53,7 +53,7 @@ public class PostsController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] int id)
     {
-        var isAuthor = await _postService.IsUserPostAuthor(id, HttpContext.GetIdUser());
+        var isAuthor = await _postService.IsUserPostAuthorAsync(id, HttpContext.GetIdUser());
 
         if (!isAuthor)
         {
@@ -66,5 +66,58 @@ public class PostsController : ControllerBase
             return NotFound();
 
         return NoContent();
+    }
+    
+    [HttpPost("{id}/comments")]
+    public async Task<IActionResult> AddComment([FromRoute] int id, [FromBody] AddPostCommentRequest request)
+    {
+        var comment = request.Comment;
+        var updated = await _postService.CommentAsync(id, HttpContext.GetIdUser(), comment);
+
+        if(!updated)
+            return NotFound();
+
+        return Ok();
+    }
+    
+    [HttpDelete("{id}/comments/{idPostComment}")]
+    public async Task<IActionResult> RemoveComment([FromRoute] int id, [FromRoute] int idPostComment)
+    {
+        var isPostAuthor = await _postService.IsUserPostAuthorAsync(id, HttpContext.GetIdUser());
+        var isCommentAuthor = await _postService.IsUserPostCommentAuthorAsync(id, idPostComment, HttpContext.GetIdUser());
+
+        if (!(isPostAuthor || isCommentAuthor))
+        {
+            return BadRequest(new { error = "You are not the author neither of the post nor the comment." });
+        }
+
+        var updated = await _postService.RemoveCommentAsync(id, idPostComment);
+
+        if(!updated)
+            return NotFound();
+
+        return Ok();
+    }
+    
+    [HttpPost("{id}/likes")]
+    public async Task<IActionResult> AddLike([FromRoute] int id)
+    {
+        var updated = await _postService.LikeAsync(id, HttpContext.GetIdUser());
+
+        if(!updated)
+            return NotFound();
+
+        return Ok();
+    }
+    
+    [HttpDelete("{id}/likes")]
+    public async Task<IActionResult> RemoveLike([FromRoute] int id)
+    {
+        var updated = await _postService.RemoveLikeAsync(id, HttpContext.GetIdUser());
+
+        if(!updated)
+            return NotFound();
+
+        return Ok();
     }
 }

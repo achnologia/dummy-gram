@@ -38,7 +38,7 @@ public class PostService : IPostService
         return await _repository.DeleteAsync(id);
     }
     
-    public async Task<bool> IsUserPostAuthor(int id, string idUser)
+    public async Task<bool> IsUserPostAuthorAsync(int id, string idUser)
     {
         var post = await _repository.GetByIdNoTrackingAsync(id);
 
@@ -49,5 +49,75 @@ public class PostService : IPostService
             return false;
 
         return true;
+    }
+
+    public async Task<bool> CommentAsync(int id, string idUser, string comment)
+    {
+        var post = await _repository.GetByIdAsync(id);
+
+        if (post is null)
+            return false;
+
+        var postComment = new PostComment(id, idUser, comment);
+
+        post.AddComment(postComment);
+        
+        return await _repository.UpdateAsync(post);
+    }
+
+    public async Task<bool> RemoveCommentAsync(int id, int idComment)
+    {
+        var post = await _repository.GetByIdAsync(id);
+
+        if (post is null)
+            return false;
+        
+        post.RemoveComment(idComment);
+        
+        return await _repository.UpdateAsync(post);
+    }
+
+    public async Task<bool> IsUserPostCommentAuthorAsync(int id, int idPostComment, string idUser)
+    {
+        var post = await _repository.GetByIdNoTrackingAsync(id);
+
+        if (post is null)
+            return false;
+
+        var postComment = post.GetPostCommentById(idPostComment);
+        
+        if (postComment is null)
+            return false;
+
+        if (postComment.IdUser != idUser)
+            return false;
+        
+        return true;
+    }
+
+    public async Task<bool> LikeAsync(int id, string idUser)
+    {
+        var post = await _repository.GetByIdAsync(id);
+
+        if (post is null)
+            return false;
+
+        var postLike = new PostLike(id, idUser);
+
+        post.Like(postLike);
+        
+        return await _repository.UpdateAsync(post);
+    }
+
+    public async Task<bool> RemoveLikeAsync(int id, string idUser)
+    {
+        var post = await _repository.GetByIdAsync(id);
+
+        if (post is null)
+            return false;
+        
+        post.RemoveLike(idUser);
+        
+        return await _repository.UpdateAsync(post);
     }
 }

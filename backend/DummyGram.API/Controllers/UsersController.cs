@@ -66,4 +66,37 @@ public class UsersController : ControllerBase
 
         return Ok();
     }
+    
+    [HttpPost("{id}/saved-posts")]
+    public async Task<IActionResult> SavePost([FromRoute] string id, [FromBody] SavePostRequest request)
+    {
+        if (id != HttpContext.GetIdUser())
+        {
+            return BadRequest(new { error = "You cannot modify another user." });
+        }
+        
+        var idPost = request.IdPost;
+        var saved = await _service.SavePostAsync(id, idPost);
+        
+        if(!saved)
+            return BadRequest();
+
+        return Ok();
+    }
+    
+    [HttpDelete("{id}/saved-posts/{idPost}")]
+    public async Task<IActionResult> Subscribe([FromRoute] string id, [FromRoute] int idPost)
+    {
+        if (id != HttpContext.GetIdUser())
+        {
+            return BadRequest(new { error = "You cannot modify another user." });
+        }
+        
+        var removed = await _service.RemoveSavedPostAsync(id, idPost);
+        
+        if(!removed)
+            return NotFound();
+
+        return Ok();
+    }
 }

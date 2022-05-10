@@ -27,6 +27,16 @@ public class ApplicationDbContext : IdentityDbContext
             {
                 j.ToTable("Subscriptions");
             });
+
+        modelBuilder.Entity<AppUser>()
+            .HasMany(c => c.SavedPosts)
+            .WithMany(s => s.SavedBy)
+            .UsingEntity(j =>
+            {
+                j.ToTable("SavedPosts");
+            });
+        
+        modelBuilder.Entity<PostLike>().HasKey(x => new { x.IdPost, x.IdUser });
         
         base.OnModelCreating(modelBuilder);
     }
