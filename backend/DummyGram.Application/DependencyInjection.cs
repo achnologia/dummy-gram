@@ -1,10 +1,10 @@
 ﻿using System.Text;
 using DummyGram.Application.Identity;
 using DummyGram.Application.Identity.Services;
-using DummyGram.Application.Post.Repositories;
-using DummyGram.Application.Post.Services;
-using DummyGram.Application.Story.Repositories;
-using DummyGram.Application.Story.Services;
+using DummyGram.Application.Posts.Repositories;
+using DummyGram.Application.Posts.Services;
+using DummyGram.Application.Stories.Repositories;
+using DummyGram.Application.Stories.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

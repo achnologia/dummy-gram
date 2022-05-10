@@ -1,6 +1,7 @@
-﻿using DummyGram.Application.Story.Repositories;
+﻿using DummyGram.Application.Stories.Repositories;
+using DummyGram.Domain.Entities;
 
-namespace DummyGram.Application.Story.Services;
+namespace DummyGram.Application.Stories.Services;
 
 public class StoryService : IStoryService
 {
@@ -13,7 +14,7 @@ public class StoryService : IStoryService
 
     public async Task<int> CreateAsync(string idUser, string imageUrl)
     {
-        var newStory = new Domain.Entities.Story(idUser, imageUrl);
+        var newStory = new Story(idUser, imageUrl);
         
         await _repository.AddAsync(newStory);
 

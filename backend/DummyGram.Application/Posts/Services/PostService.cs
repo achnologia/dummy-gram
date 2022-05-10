@@ -1,6 +1,7 @@
-﻿using DummyGram.Application.Post.Repositories;
+﻿using DummyGram.Application.Posts.Repositories;
+using DummyGram.Domain.Entities;
 
-namespace DummyGram.Application.Post.Services;
+namespace DummyGram.Application.Posts.Services;
 
 public class PostService : IPostService
 {
@@ -13,7 +14,7 @@ public class PostService : IPostService
 
     public async Task<int> CreateAsync(string idUser, string imageUrl, string description)
     {
-        var newPost = new Domain.Entities.Post(idUser, imageUrl, description);
+        var newPost = new Post(idUser, imageUrl, description);
 
         await _repository.AddAsync(newPost);
 

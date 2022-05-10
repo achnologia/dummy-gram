@@ -1,4 +1,4 @@
-﻿namespace DummyGram.Application.Post.Services;
+﻿namespace DummyGram.Application.Posts.Services;
 
 public interface IPostService
 {

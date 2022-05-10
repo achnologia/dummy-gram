@@ -1,6 +1,6 @@
 ﻿using DummyGram.API.Contracts.Requests.Post;
 using DummyGram.API.Extensions;
-using DummyGram.Application.Post.Services;
+using DummyGram.Application.Posts.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

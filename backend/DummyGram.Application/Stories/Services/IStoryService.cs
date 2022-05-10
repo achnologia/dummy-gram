@@ -1,4 +1,4 @@
-﻿namespace DummyGram.Application.Story.Services;
+﻿namespace DummyGram.Application.Stories.Services;
 
 public interface IStoryService
 {
