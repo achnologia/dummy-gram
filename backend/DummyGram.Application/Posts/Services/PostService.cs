@@ -120,4 +120,9 @@ public class PostService : IPostService
         
         return await _repository.UpdateAsync(post);
     }
+
+    public async Task<Post> GetPost(int id)
+    {
+        return await _repository.GetByIdNoTrackingAsync(id);
+    }
 }

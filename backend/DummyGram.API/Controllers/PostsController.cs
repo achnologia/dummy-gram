@@ -1,4 +1,6 @@
 ﻿using DummyGram.API.Contracts.Requests.Post;
+using DummyGram.API.Contracts.Responses.Posts;
+using DummyGram.API.Contracts.Shared;
 using DummyGram.API.Extensions;
 using DummyGram.Application.Posts.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -119,5 +121,28 @@ public class PostsController : ControllerBase
             return NotFound();
 
         return Ok();
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetPostDetails([FromRoute] int id)
+    {
+        var post = await _postService.GetPost(id);
+
+        if(post is null)
+            return NotFound();
+
+        var authorDto = new AuthorDto(post.IdUser, post.Author.UserName);
+        var commentsDto = post.Comments.Select(x => 
+            new CommentDto(new AuthorDto(x.IdUser, x.Author.UserName), x.Comment)
+        ).ToList();
+        
+        var response = new GetPostDetailsResponse(authorDto, 
+            post.ImageUrl, 
+            post.Description, 
+            post.Likes.Count(), 
+            post.Comments.Count(), 
+            commentsDto);
+        
+        return Ok(response);
     }
 }
