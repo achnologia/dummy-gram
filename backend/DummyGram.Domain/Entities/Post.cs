@@ -33,35 +33,35 @@ public class Post : Entity
         DatePosted = DateTime.UtcNow;
     }
 
-    public void Update(string imageUrl, string description)
+    public virtual void Update(string imageUrl, string description)
     {
         ImageUrl = imageUrl;
         Description = description;
     }
 
-    public void AddComment(PostComment comment)
+    public virtual void AddComment(PostComment comment)
     {
         Comments.Add(comment);
     }
 
-    public void RemoveComment(int idPostComment)
+    public virtual void RemoveComment(int idPostComment)
     {
         var postCommentToRemove = GetPostCommentById(idPostComment);
 
         Comments.Remove(postCommentToRemove);
     }
 
-    public PostComment GetPostCommentById(int idPostComment)
+    public virtual PostComment GetPostCommentById(int idPostComment)
     {
         return Comments.SingleOrDefault(x => x.Id == idPostComment);
     }
     
-    public void Like(PostLike like)
+    public virtual void Like(PostLike like)
     {
         Likes.Add(like);
     }
 
-    public void RemoveLike(string idUser)
+    public virtual void RemoveLike(string idUser)
     {
         var likeToRemove = Likes.SingleOrDefault(x => x.IdUser == idUser);
 

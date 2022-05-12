@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1A3BD4BF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyGram.Domain.UnitTests", "DummyGram.Domain.UnitTests\DummyGram.Domain.UnitTests.csproj", "{129AA3B4-9718-4C19-99EC-4D67D254E35B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyGram.Application.UnitTests", "DummyGram.Application.UnitTests\DummyGram.Application.UnitTests.csproj", "{F388907F-BC31-42C2-881D-0872D384A8D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,8 +40,13 @@ Global
 		{129AA3B4-9718-4C19-99EC-4D67D254E35B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{129AA3B4-9718-4C19-99EC-4D67D254E35B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{129AA3B4-9718-4C19-99EC-4D67D254E35B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F388907F-BC31-42C2-881D-0872D384A8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F388907F-BC31-42C2-881D-0872D384A8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F388907F-BC31-42C2-881D-0872D384A8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F388907F-BC31-42C2-881D-0872D384A8D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{129AA3B4-9718-4C19-99EC-4D67D254E35B} = {1A3BD4BF-0C21-471A-A2F6-AB79109F565A}
+		{F388907F-BC31-42C2-881D-0872D384A8D5} = {1A3BD4BF-0C21-471A-A2F6-AB79109F565A}
 	EndGlobalSection
 EndGlobal
