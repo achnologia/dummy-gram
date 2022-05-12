@@ -23,32 +23,32 @@ public class AppUser : IdentityUser
         DisplayName = email;
     }
 
-    public void Update(string displayName)
+    public virtual void Update(string displayName)
     {
         DisplayName = displayName;
     }
 
-    public void Subscribe(AppUser newSubscriber)
+    public virtual void Subscribe(AppUser newSubscriber)
     {
         Subscribers.Add(newSubscriber);
     }
 
-    public void Unsubscribe(AppUser newSubscriber)
+    public virtual void Unsubscribe(AppUser newSubscriber)
     {
         Subscribers.Remove(newSubscriber);
     }
     
-    public bool HasSubscriber(AppUser subscriber)
+    public virtual bool HasSubscriber(AppUser subscriber)
     {
         return Subscribers.Contains(subscriber);
     }
 
-    public void SavePost(Post post)
+    public virtual void SavePost(Post post)
     {
         SavedPosts.Add(post);
     }
     
-    public void RemoveSavedPost(Post post)
+    public virtual void RemoveSavedPost(Post post)
     {
         SavedPosts.Remove(post);
     }
