@@ -1,4 +1,5 @@
-﻿using DummyGram.Domain.Entities;
+﻿using System.Reflection;
+using DummyGram.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,26 +19,10 @@ public class ApplicationDbContext : IdentityDbContext
     
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
     
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        modelBuilder.Entity<AppUser>()
-            .HasMany(c => c.Subscriptions)
-            .WithMany(s => s.Subscribers)
-            .UsingEntity(j =>
-            {
-                j.ToTable("Subscriptions");
-            });
-
-        modelBuilder.Entity<AppUser>()
-            .HasMany(c => c.SavedPosts)
-            .WithMany(s => s.SavedBy)
-            .UsingEntity(j =>
-            {
-                j.ToTable("SavedPosts");
-            });
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         
-        modelBuilder.Entity<PostLike>().HasKey(x => new { x.IdPost, x.IdUser });
-        
-        base.OnModelCreating(modelBuilder);
+        base.OnModelCreating(builder);
     }
 }
