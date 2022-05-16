@@ -13,6 +13,10 @@ public class AppUser : IdentityUser
     public List<AppUser> Subscribers { get; set; } = new List<AppUser>();
     
     public List<Post> SavedPosts { get; set; } = new List<Post>();
+
+    public List<Post> Posts { get; set; } = new List<Post>();
+    
+    public List<Story> Stories { get; set; } = new List<Story>();
     
     public AppUser() { }
 

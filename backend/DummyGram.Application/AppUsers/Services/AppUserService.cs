@@ -1,5 +1,6 @@
 ﻿using DummyGram.Application.AppUsers.Repositories;
 using DummyGram.Application.Posts.Repositories;
+using DummyGram.Domain.Entities;
 
 namespace DummyGram.Application.AppUsers.Services;
 
@@ -79,5 +80,10 @@ public class AppUserService : IAppUserService
         appUser.RemoveSavedPost(post);
 
         return await _repository.UpdateAsync(appUser);
+    }
+
+    public async Task<AppUser> GetUser(string id)
+    {
+        return await _repository.GetByIdNoTrackingAsync(id);
     }
 }

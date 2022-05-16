@@ -17,6 +17,22 @@ public class AppUserRepository : IAppUserRepository
     {
         var appUser = await _context.AppUsers.Include(x => x.Subscribers)
             .Include(x => x.Subscriptions)
+            .Include(x => x.SavedPosts)
+            .Include(x => x.Posts)
+            .Include(x => x.Stories)
+            .SingleOrDefaultAsync(x => x.Id == id);
+
+        return appUser;
+    }
+
+    public async Task<AppUser> GetByIdNoTrackingAsync(string id)
+    {
+        var appUser = await _context.AppUsers.Include(x => x.Subscribers)
+            .Include(x => x.Subscriptions)
+            .Include(x => x.SavedPosts)
+            .Include(x => x.Posts)
+            .Include(x => x.Stories)
+            .AsNoTracking()
             .SingleOrDefaultAsync(x => x.Id == id);
 
         return appUser;

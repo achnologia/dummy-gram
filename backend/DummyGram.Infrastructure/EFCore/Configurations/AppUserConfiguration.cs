@@ -21,5 +21,11 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
             {
                 j.ToTable("SavedPosts");
             });
+
+        builder.HasMany(x => x.Posts)
+            .WithOne(p => p.Author);
+
+        builder.HasMany(x => x.Stories)
+            .WithOne(s => s.Author);
     }
 }

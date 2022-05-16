@@ -428,8 +428,8 @@ namespace DummyGram.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("DummyGram.Domain.Entities.Post", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Author")
-                        .WithMany()
+                    b.HasOne("DummyGram.Domain.Entities.AppUser", "Author")
+                        .WithMany("Posts")
                         .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -488,8 +488,8 @@ namespace DummyGram.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("DummyGram.Domain.Entities.Story", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Author")
-                        .WithMany()
+                    b.HasOne("DummyGram.Domain.Entities.AppUser", "Author")
+                        .WithMany("Stories")
                         .HasForeignKey("IdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -562,6 +562,13 @@ namespace DummyGram.Infrastructure.EFCore.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Likes");
+                });
+
+            modelBuilder.Entity("DummyGram.Domain.Entities.AppUser", b =>
+                {
+                    b.Navigation("Posts");
+
+                    b.Navigation("Stories");
                 });
 #pragma warning restore 612, 618
         }
