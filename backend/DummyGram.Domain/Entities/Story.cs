@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Identity;
 
 namespace DummyGram.Domain.Entities;
 
@@ -14,7 +13,7 @@ public class Story : Entity
     public DateTime DateOfExpiration { get; set; }
     
     [ForeignKey(nameof(IdUser))]
-    public virtual IdentityUser Author { get; set; }
+    public virtual AppUser Author { get; set; }
 
     public Story() { }
     
