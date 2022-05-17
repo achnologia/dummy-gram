@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DummyGram.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220516135517_test")]
+    [Migration("20220516135517_ChangedPostAndStoryFKToAppUser")]
     partial class ChangedPostAndStoryFKToAppUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
