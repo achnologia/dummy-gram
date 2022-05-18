@@ -155,7 +155,7 @@ public class UsersController : ControllerBase
         if (user is null)
             return NotFound();
 
-        var response = new GetUserStoriesResponse(user.Stories.Where(x => x.DateOfExpiration > DateTime.Now).Select(x => new StoryDto(x.Id, x.ImageUrl, x.DatePosted)));
+        var response = new GetUserStoriesResponse(user.Stories.Where(x => x.DateOfExpiration > DateTime.UtcNow).Select(x => new StoryDto(x.Id, x.ImageUrl, x.DatePosted)));
 
         return Ok(response);
     }
@@ -169,6 +169,28 @@ public class UsersController : ControllerBase
             return NotFound();
 
         var response = new GetUserSavedPosts(user.SavedPosts.Select(x => new PostMinimalDto(x.Id, x.ImageUrl)));
+
+        return Ok(response);
+    }
+
+    [HttpGet("{id}/home-layout")]
+    public async Task<IActionResult> GetUserHomeEntities([FromRoute] string id)
+    {
+        var user = await _service.GetUser(id);
+
+        if (user is null)
+            return NotFound();
+        
+        var subscriptions = user.Subscriptions;
+        var posts = subscriptions.SelectMany(x => x.Posts).OrderBy(x => x.DatePosted).Select(x => 
+            new PostFullDto(new AuthorDto(x.Author.Id, x.Author.UserName),
+                x.ImageUrl,
+                x.Description,
+                x.Likes.Count(),
+                x.Comments.Count(),
+                x.Comments.Select(x => new CommentDto(new AuthorDto(x.IdUser, x.Author.UserName), x.Comment))));
+        var stories = subscriptions.SelectMany(x => x.Stories).Where(x => x.DateOfExpiration > DateTime.UtcNow).Select(x => new AuthorDto(x.Author.Id, x.Author.UserName));
+        var response = new GetUserHomeEntitiesResponse(posts, stories);
 
         return Ok(response);
     }
