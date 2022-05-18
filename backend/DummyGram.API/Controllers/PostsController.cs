@@ -134,14 +134,15 @@ public class PostsController : ControllerBase
         var authorDto = new AuthorDto(post.IdUser, post.Author.UserName);
         var commentsDto = post.Comments.Select(x => 
             new CommentDto(new AuthorDto(x.IdUser, x.Author.UserName), x.Comment)
-        ).ToList();
-        
-        var response = new GetPostDetailsResponse(authorDto, 
+        );
+
+        var postDto = new PostFullDto(authorDto, 
             post.ImageUrl, 
             post.Description, 
             post.Likes.Count(), 
             post.Comments.Count(), 
             commentsDto);
+        var response = new GetPostDetailsResponse(postDto);
         
         return Ok(response);
     }
